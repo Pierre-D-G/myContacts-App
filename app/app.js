@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('myApp', [
+angular.module('myContacts', [
   'ngRoute'
 ]).
 config(['$routeProvider', function($routeProvider) {
 
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.otherwise({redirectTo: '/contacts'});
 }]);
