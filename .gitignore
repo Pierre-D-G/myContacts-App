@@ -4,6 +4,8 @@ ehthumbs.db
 
 # Folder config file
 Desktop.ini
+# ignore node_modules directory
+/node_modules
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
