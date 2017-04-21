@@ -28,11 +28,66 @@ firebase.initializeApp(config);
 myContacts.controller('ContactsCtrl', ['$scope', '$firebaseArray', function ($scope, $firebaseArray) {
 
 
-  var ref = firebase.database().ref();
+  var ref = firebase.database().ref('/contacts');
 
   $scope.contacts = $firebaseArray(ref);
 
-  $scope.showAddForm = function() {
+  // Handles showing the form to add a new contact
+  // Shows form
+  $scope.showAddForm = function () {
     $scope.addFormShow = true;
   };
-}])
+  // Hides Form
+  $scope.hideAddForm = function () {
+    $scope.addFormShow = false;
+  };
+  // Handles submitting data from the form
+  $scope.addFormSubmit = function () {
+  
+  //  Assigning values to form data
+
+  if($scope.name) { var name = $scope.name}else { var name = null;}
+  if($scope.email) { var email = $scope.email}else { var email = null;}
+  if($scope.company) { var company = $scope.company}else { var company = null;}
+  if($scope.home_phone) { var home_phone = $scope.home_phone}else { var home_phone = null;}
+  if($scope.mobile_phone) { var mobile_phone = $scope.mobile_phone}else { var mobile_phone = null;}
+  if($scope.work_phone){ var work_phone = $scope.work_phone}else { var work_phone = null;}
+  if($scope.street_address){ var street_address = $scope.street_address} else{ var street_address = null;}
+  if($scope.city){ var city =$scope.city} else{ var city = null;}
+  if($scope.state){ var state = $scope.state} else { var state = null;}
+  if($scope.zip_code){ var zip_code = $scope.zip_code}else { var zip_code = null;}
+
+  //  building object
+
+  $scope.contacts.$add({
+    name: name,
+    email: email,
+    company: company,
+    phones: [
+      {
+        home: home_phone,
+        mobile: mobile_phone,
+        work: work_phone,
+      }
+    ],
+    address: [
+      {
+        street: street_address,
+        city: city,
+        state: state,
+        zipcode: zip_code
+      }
+    ]
+  }).then(function(ref){
+    var id = ref.key;
+    console.log("Added contact with id " + id);
+
+    //  Clear form
+    // clearFields();
+    // Hide form
+    $scope.addFormShow = false;
+    // Confirmation message
+    $scope.msg = "Contact Added";
+  });
+ };
+}]);
