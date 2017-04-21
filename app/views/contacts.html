@@ -1,6 +1,7 @@
-<!-- Form to add contacts -->
-<div class="row" ng-controller="ContactsCtrl">
-    <form ng-show="addFormShow">
+<div class="large-10 columns">
+    <div data-alert ng-show="msg" class="alert-box">{{msg}}</div>
+    <!-- Form to add contacts -->
+    <form ng-submit="addFormSubmit()" ng-show="addFormShow">
         <div class="row">
             <h3>Add Contacts</h3>
             <div class="large-6 columns">
@@ -65,37 +66,36 @@
         <div class="row">
             <div class="large-12 columns">
                 <input type="submit" value="Add Contact" class="button">
+                <a class="button" ng-click="hideAddForm()">-</a>
             </div>
         </div>
     </form>
 
 
-
-    <div class="large-10 columns">
-        <h3>Your Contacts (4)</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th width="200px">Name</th>
-                        <th width="200px">Company</th>
-                        <th width="25%">Email</th>
-                        <th width="25%">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td ng-repeat="contact in contacts">
-                            <a href="#"></a>{{contact.name}}</td>
-                        <td>{{contact.company}}</td>
-                        <td>{{contact.email}}</td>
-                        <td><a class="button tiny" ng-click='showEditForm(contact)'>Edit</a>
-                            <a class="button tiny alert " ng-click='removeContact(contact)'>Delete</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="small-12 large-2 columns">
-                <a class="button large" ng-click="showAddForm()">+</a>
-            </div>
-    </div>
+    <!--Contacts Display Panel-->
+    <h3>Your Contacts (4)</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th width="200px">Name</th>
+                    <th width="200px">Company</th>
+                    <th width="25%">Email</th>
+                    <th width="25%">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="contact in contacts">
+                    <td>
+                        <a href="#"></a>{{contact.name}}</td>
+                    <td>{{contact.company}}</td>
+                    <td>{{contact.email}}</td>
+                    <td><a class="button tiny" ng-click='showEditForm(contact)'>Edit</a>
+                        <a class="button tiny alert " ng-click='removeContact(contact)'>Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="small-12 large-2 columns">
+            <a class="button large" ng-click="showAddForm()">+</a>
+        </div>
 </div>
