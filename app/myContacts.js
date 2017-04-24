@@ -38,8 +38,9 @@ myContacts.controller('ContactsCtrl', ['$scope', '$firebaseArray', function ($sc
     $scope.addFormShow = true;
   };
   // Hides Form
-  $scope.hideAddForm = function () {
+  $scope.hide = function () {
     $scope.addFormShow = false;
+    $scope.contactShow = false;
   };
   // Handles submitting data from the form
   $scope.addFormSubmit = function () {
